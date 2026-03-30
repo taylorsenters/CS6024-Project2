@@ -1,0 +1,49 @@
+/* ── Bar Chart ───────────────────────────────────────────── */
+
+/* Bars */
+.bar-chart-bar {
+  rx: 2;
+  cursor: pointer;
+}
+
+.bar-chart-bar.active {
+  stroke: #d64545;
+  stroke-width: 2;
+}
+
+#tooltip .bar-tooltip {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #102a43;
+}
+
+#tooltip .bar-tooltip strong {
+  font-size: 12px;
+  font-weight: 700;
+  color: #0b2138;
+}
+
+/* Value labels to the right of each bar */
+.bar-chart-label {
+  font-size: 9px;
+  fill: #52606d;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Y-axis category labels */
+.bar-chart-y-axis .tick text {
+  font-size: 9px;
+  fill: #3d4f61;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Hide the Y-axis domain line */
+.bar-chart-y-axis .domain {
+  display: none;
+}
+
+/* Scrollable chart body */
+.bar-chart-body--scrollable {
+  overflow-y: auto;
+  overflow-x: hidden;
+}

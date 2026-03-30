@@ -1,0 +1,49 @@
+#chart-priority .chart-body.priority-pie-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.priority-pie-svg {
+  display: block;
+}
+
+.priority-slice {
+  stroke: rgba(11, 33, 56, 0.45);
+  stroke-width: 1;
+  cursor: pointer;
+}
+
+.priority-slice.hovered {
+  stroke: #102a43;
+  stroke-width: 2;
+}
+
+.priority-slice.active {
+  stroke: #d64545;
+  stroke-width: 2.5;
+}
+
+.priority-pie-empty {
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 10px;
+  color: #627d98;
+  padding: 8px;
+}
+
+#tooltip .priority-tooltip {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #102a43;
+}
+
+#tooltip .priority-tooltip strong {
+  font-size: 12px;
+  font-weight: 700;
+  color: #0b2138;
+}

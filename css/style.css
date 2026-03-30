@@ -1,0 +1,245 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #1f2933;
+}
+
+/* ── Map: full-viewport base layer ───────────────────────── */
+#my-map {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+/* ── Shared glass-panel surface ──────────────────────────── */
+.header-panel,
+.toolbar-panel,
+.chart-card,
+.timeline-panel {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(209, 223, 237, 0.88);
+  border-radius: 10px;
+  box-shadow: 0 6px 22px rgba(15, 23, 42, 0.14);
+}
+
+/* ── Left column: header + toolbar stacked ───────────────── */
+.left-column {
+  position: fixed;
+  top: 12px;
+  left: 16px;       /* clear Leaflet zoom controls (~34 px wide) */
+  bottom: auto;
+  max-height: calc(100vh - 162px); /* 12px top + 130px timeline + 8px gap + 12px bottom */
+  width: clamp(200px, 20vw, 270px);
+  z-index: 900;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none; /* clicks pass through column gaps to the map */
+}
+
+.header-panel {
+  pointer-events: all;
+  padding: 12px 14px;
+  flex-shrink: 0;
+}
+
+.header-panel h1 {
+  margin: 0 0 4px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #102a43;
+}
+
+.panel-description {
+  margin: 0;
+  font-size: 12px;
+  color: #52606d;
+  line-height: 1.4;
+}
+
+.toolbar-panel {
+  pointer-events: all;
+  padding: 12px 14px;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+/* Align Leaflet zoom controls inline with the header panel */
+.leaflet-top.leaflet-left {
+  top: 8px;
+  padding-top: 0;
+  left: calc(12px + clamp(200px, 20vw, 270px));
+}
+
+/* ── Timeline panel: bottom center ───────────────────────── */
+.timeline-panel {
+  position: fixed;
+  bottom: 12px;
+  left: 16px;
+  right: calc(20px + clamp(220px, 24vw, 330px));
+  height: 150px;
+  z-index: 900;
+  padding: 8px 10px 6px;
+  display: flex;
+  flex-direction: column;
+  pointer-events: all;
+}
+
+/* ── Charts panel: right side, full height ───────────────── */
+.charts-panel {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  bottom: 12px; 
+  width: clamp(220px, 24vw, 330px);
+  z-index: 900;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.chart-card {
+  pointer-events: all;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 10px 6px;
+  overflow: hidden;
+}
+
+.chart-title {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: #627d98;
+  margin-bottom: 4px;
+  flex-shrink: 0;
+}
+
+.chart-body {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.chart-legend-container {
+  flex-shrink: 0;
+  margin-bottom: 3px;
+}
+
+/* ── Tooltip ─────────────────────────────────────────────── */
+#tooltip {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  font-size: 12px;
+  padding: 6px 10px;
+  max-width: 260px;
+}
+
+.tooltip-label {
+  font-weight: 500;
+  font-size: 10px;
+  color: #555;
+  line-height: 1.65;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .left-column {
+    width: clamp(190px, 22vw, 260px);
+  }
+  .charts-panel {
+    width: clamp(200px, 26vw, 300px);
+  }
+}
+
+@media (max-width: 800px) {
+  .left-column {
+    left: 12px;
+    width: clamp(180px, 42vw, 240px);
+  }
+  .leaflet-top.leaflet-left {
+    left: calc(12px + clamp(180px, 42vw, 240px) + 8px);
+  }
+  .charts-panel {
+    width: clamp(180px, 38vw, 260px);
+  }
+}
+
+/* Basemap toggle button styles */
+#basemap-toggle,
+.basemap-toggle,
+button[data-control="basemap"] {
+  border: 1px solid #c7d2da;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Aerial mode: light green */
+#basemap-toggle.aerial,
+.basemap-toggle.aerial,
+button[data-control="basemap"].aerial {
+  background-color: #dff5e3;
+  color: #123b1f;
+  border-color: #b7e3c0;
+}
+
+/* Roads/Boundaries mode: light yellow */
+#basemap-toggle.roads,
+#basemap-toggle.boundaries,
+.basemap-toggle.roads,
+.basemap-toggle.boundaries,
+button[data-control="basemap"].roads,
+button[data-control="basemap"].boundaries {
+  background-color: #fff6cc;
+  color: #4a3b00;
+  border-color: #f0df94;
+}
+
+/* Clear selection button default: red */
+#clear-selection,
+.chart-clear-btn,
+button[data-control="clear-selection"],
+.leaflet-control-clear {
+  background-color: #dc2626;
+  color: #ffffff;
+  border: 1px solid #b91c1c;
+  border-radius: 5px;
+  padding: 4px 9px;
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background-color 0.15s ease;
+}
+
+/* Clear selection hover: deep red */
+#clear-selection:hover,
+.chart-clear-btn:hover,
+button[data-control="clear-selection"]:hover,
+.leaflet-control-clear:hover {
+  background-color: #7f1d1d;
+}
+

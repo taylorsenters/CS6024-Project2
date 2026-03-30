@@ -1,0 +1,24 @@
+.city-grid-heatmap-cell {
+  stroke-opacity: 0.42;
+}
+
+.city-grid-heatmap-label {
+  background: transparent;
+  border: none;
+}
+
+.city-grid-heatmap-label span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 14px;
+  padding: 0 3px;
+  font-size: 9px;
+  font-weight: 700;
+  color: #0b1f35;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.85);
+  border-radius: 3px;
+  line-height: 1;
+}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Who you gonna call? 3-1-1!</title>
+    <link rel="icon" href="data:;base64,iVBORwOKGO=" />
+    <link rel="stylesheet" href="css/leaflet.css">
+    <link rel="stylesheet" href="css/filterPanel.css">
+    <link rel="stylesheet" href="css/barChart.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/neighborhoodHeatmap.css">
+    <link rel="stylesheet" href="css/cityGridHeatmap.css">
+    <link rel="stylesheet" href="css/priorityPieChart.css">
+    <link rel="stylesheet" href="css/timelineChart.css">
+</head>
+<body>
+
+    <!-- Map: full-viewport base layer -->
+    <div id="my-map"></div>
+
+    <!-- Left column: header panel + toolbar panel stacked -->
+    <div class="left-column">
+        <div class="header-panel">
+            <h1>311 Service Calls</h1>
+            <p class="panel-description">Filter requests by service request type.</p>
+        </div>
+        <div class="toolbar-panel">
+            <label for="sr-type-selector" class="filter-label">Request Type</label>
+            <select id="sr-type-selector" class="filter-select"></select>
+            <label for="color-by-selector" class="filter-label">Color By</label>
+            <select id="color-by-selector" class="filter-select">
+                <option value="timeGap">Time from Request to Update</option>
+                <option value="neighborhood">Neighborhood</option>
+                <option value="priority">Priority</option>
+                <option value="agency">Public Agency</option>
+                <option value="srType">Service Request Type</option>
+            </select>
+            <div id="color-legend" class="color-legend"></div>
+            <button id="map-style-toggle" class="map-style-toggle" type="button">Basemap: Aerial</button>
+            <button id="city-heatmap-toggle" class="map-style-toggle city-heatmap-toggle" type="button">City Heatmap: Off</button>
+            <button id="brush-map-btn" class="map-style-toggle" type="button">Brush Map: Off</button>
+            <div id="filter-summary" class="filter-summary"></div>
+            <div id="missing-gps" class="missing-gps-info"></div>
+            <button id="clear-selection" class="clear-selection-btn" type="button" style="display:none;">Clear Selection</button>
+            <div class="selected-point-panel">
+                <div class="selected-point-title">Selected Data Point</div>
+                <div id="selected-point-details" class="selected-point-details">Click a point on the map to view all fields.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts panel: right side, full height, 5 charts -->
+    <div class="charts-panel">
+        <div class="chart-card" id="chart-sr-type">
+            <div class="chart-title">Top Service Request Types</div>
+            <div class="chart-legend-container"></div>
+            <div class="chart-body"></div>
+        </div>
+        <div class="chart-card" id="chart-priority">
+            <div class="chart-title">By Priority</div>
+            <div class="chart-legend-container"></div>
+            <div class="chart-body"></div>
+        </div>
+        <div class="chart-card" id="chart-agency">
+            <div class="chart-title">By Agency</div>
+            <div class="chart-legend-container"></div>
+            <div class="chart-body"></div>
+        </div>
+        <div class="chart-card" id="chart-method-received">
+            <div class="chart-title">By Method Received</div>
+            <div class="chart-legend-container"></div>
+            <div class="chart-body"></div>
+        </div>
+        <div class="chart-card" id="chart-neighborhood">
+            <div class="chart-title">By Neighborhood</div>
+            <div class="chart-legend-container"></div>
+            <div class="chart-body"></div>
+        </div>
+    </div>
+
+    <!-- Timeline panel: bottom center, spans between left side and charts panel -->
+    <div class="timeline-panel">
+        <div class="chart-title timeline-title-row">
+            <span id="timeline-parameter-title">Timeline</span>
+            <div class="timeline-controls">
+                <button id="timeline-animate-btn" class="timeline-animate-btn" type="button">&#9654; Play</button>
+                <button id="timeline-reset-btn" class="timeline-reset-btn" type="button">&#8634; Reset</button>
+                <select id="timeline-parameter-selector" class="timeline-parameter-selector">
+                    <option value="dateReceived">DATE_RECEIVED</option>
+                    <option value="dateResolved">DATE_RESOLVED</option>
+                </select>
+            </div>
+        </div>
+        <div class="chart-body" id="chart-timeline"></div>
+    </div>
+
+    <div id="tooltip"></div>
+
+    <script src="js/d3.v6.min.js"></script>
+    <script src="js/leaflet.js"></script>
+    <script src="js/leafletMap.js"></script>
+    <script src="js/cityGridHeatmap.js"></script>
+    <script src="js/filterPanel.js"></script>
+    <script src="js/neighborhoodHeatmap.js"></script>
+    <script src="js/priorityPieChart.js"></script>
+    <script src="js/barChart.js"></script>
+    <script src="js/timelineChart.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+</html>

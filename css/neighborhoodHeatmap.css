@@ -1,0 +1,60 @@
+#chart-neighborhood .chart-body.neighborhood-heatmap-body {
+  overflow-y: auto;
+  padding-right: 2px;
+}
+
+.neighborhood-heatmap-scroll {
+  min-height: 100%;
+}
+
+.neighborhood-heatmap-svg {
+  display: block;
+}
+
+.heatmap-rect {
+  stroke: rgba(9, 30, 66, 0.35);
+  stroke-width: 1;
+}
+
+.heatmap-tile.hovered .heatmap-rect {
+  stroke: #102a43;
+  stroke-width: 1.5;
+}
+
+.heatmap-rect.active {
+  stroke: #d64545;
+  stroke-width: 2;
+}
+
+.heatmap-tile-label {
+  font-size: 8px;
+  font-weight: 700;
+  fill: #102a43;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  pointer-events: none;
+  text-transform: uppercase;
+}
+
+.neighborhood-heatmap-empty {
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 10px;
+  color: #627d98;
+  padding: 8px;
+}
+
+#tooltip .neighborhood-tooltip {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #102a43;
+}
+
+#tooltip .neighborhood-tooltip strong {
+  font-size: 12px;
+  font-weight: 700;
+  color: #0b2138;
+}

@@ -1,0 +1,150 @@
+/* ── Timeline Chart ──────────────────────────────────────── */
+
+.timeline-chart-svg {
+  display: block;
+}
+
+.timeline-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.timeline-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.timeline-parameter-selector {
+  font-size: 10px;
+  font-weight: 600;
+  color: #334e68;
+  border: 1px solid #bcccdc;
+  border-radius: 4px;
+  background: #ffffff;
+  padding: 2px 6px;
+}
+
+.timeline-animate-btn {
+  font-size: 10px;
+  font-weight: 700;
+  color: #1a4731;
+  background: #c6f6d5;
+  border: 1px solid #9ae6b4;
+  border-radius: 4px;
+  padding: 2px 8px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.timeline-animate-btn:hover {
+  background: #9ae6b4;
+}
+
+.timeline-animate-btn.playing {
+  color: #742a2a;
+  background: #fed7d7;
+  border-color: #feb2b2;
+}
+
+.timeline-animate-btn.playing:hover {
+  background: #feb2b2;
+}
+
+.timeline-reset-btn {
+  font-size: 10px;
+  font-weight: 700;
+  color: #44337a;
+  background: #e9d8fd;
+  border: 1px solid #d6bcfa;
+  border-radius: 4px;
+  padding: 2px 8px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.timeline-reset-btn:hover {
+  background: #d6bcfa;
+}
+
+/* Bars */
+.timeline-bar {
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.timeline-trendline-path {
+  pointer-events: none;
+}
+
+/* Y-axis label */
+.timeline-y-label {
+  font-size: 9px;
+  font-weight: 600;
+  fill: #627d98;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* X Axis */
+.timeline-x-axis .tick text {
+  font-size: 10px;
+  font-weight: 600;
+  fill: #334e68;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.timeline-x-axis .domain {
+  stroke: #bcccdc;
+}
+
+.timeline-x-axis .tick line {
+  stroke: #d9e2ec;
+}
+
+/* Y Axis */
+.timeline-y-axis .tick text {
+  font-size: 10px;
+  font-weight: 600;
+  fill: #334e68;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.timeline-y-axis .domain {
+  stroke: #bcccdc;
+}
+
+.timeline-y-axis .tick line {
+  stroke: #d9e2ec;
+}
+
+/* Brush selection rectangle */
+.timeline-brush .selection {
+  fill: #3b82f6;
+  fill-opacity: 0.12;
+  stroke: #2563eb;
+  stroke-width: 1;
+}
+
+.timeline-brush .handle {
+  fill: #2563eb;
+  stroke: none;
+  rx: 2;
+}
+
+.timeline-brush .overlay {
+  cursor: crosshair;
+}
+
+/* Tooltip content */
+#tooltip .timeline-tooltip {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #102a43;
+}
+
+#tooltip .timeline-tooltip strong {
+  font-weight: 700;
+  color: #0b2138;
+}
