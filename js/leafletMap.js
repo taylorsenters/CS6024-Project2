@@ -183,7 +183,8 @@ class LeafletMap {
       .attr('fill', d => vis.getPointColor(d))
       .attr('r', d => vis.getPointRadius(d))
       .attr('stroke-width', d => vis.getPointStrokeWidth(d))
-      .attr('opacity', d => vis.getPointOpacity(d));
+      .attr('opacity', d => vis.getPointOpacity(d))
+      .classed('selected-point-blink', d => vis.selectedPoint && d.SR_NUMBER === vis.selectedPoint.SR_NUMBER);
   }
 
   updateState(globalState, filteredData, colorBaseData) {

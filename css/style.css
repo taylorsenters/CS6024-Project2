@@ -243,3 +243,14 @@ button[data-control="clear-selection"]:hover,
   background-color: #7f1d1d;
 }
 
+/* Blinking selected point on the map */
+@keyframes point-blink {
+  0%, 100% { stroke: red; stroke-width: 4px; }
+  50%      { stroke: rgb(0, 0, 0); stroke-width: 4px; }
+}
+
+.selected-point-blink {
+  animation: point-blink 0.8s ease-in-out infinite;
+  stroke-width: 4px !important;
+}
+
